@@ -1,0 +1,27 @@
+{
+  "max_velocity": 225.0,
+  "max_acceleration": 2350.0,
+  "max_accel_to_decel": 1175.0,
+  "square_corner_velocity": 5.0,
+  "instant_corner_velocity": 1.0,
+  "mm_per_arc_segment": 0.05,
+  "move_checkers": [
+    {
+      "axis_limiter": {
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "max_velocity": 25.0,
+        "max_accel": 100.0
+      }
+    },
+    {
+      "extruder_limiter": {
+        "max_velocity": 59.868243083057465,
+        "max_accel": 625.2905388674891
+      }
+    }
+  ]
+}

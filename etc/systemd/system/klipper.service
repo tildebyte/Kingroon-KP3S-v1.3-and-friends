@@ -1,0 +1,23 @@
+# Systemd service file for klipper
+[Unit]
+Description=Klipper
+Documentation=https://www.klipper3d.org/
+After=network-online.target
+Before=moonraker.service
+Wants=udev.target
+
+[Install]
+Alias=klippy
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+User=quaestor
+RemainAfterExit=yes
+WorkingDirectory=/home/quaestor/Source/klipper
+EnvironmentFile=/home/quaestor/printer_data/systemd/klipper.env
+ExecStart=/home/quaestor/klippy-venv/bin/python3.9 /home/quaestor/Source/klipper/klippy/klippy.py $KLIPPER_ARGS
+# ExecStart=/home/quaestor/klippy-venv/bin/python3.9 /home/quaestor/Source/klipper/klippy/klippy.py /home/quaestor/Source/printer_cfg/printer.cfg -l /tmp/klippy.log
+Restart=always
+RestartSec=10
+

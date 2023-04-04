@@ -1,0 +1,11 @@
+[Unit]
+Description=uStreamer service
+After=network.target
+
+[Service]
+User=ustreamer
+ExecStart=/usr/bin/ustreamer --log-level=0 --device-timeout=8 --resolution=1280x720 --desired-fps=18 --slowdown --host=192.168.1.105 --workers=4
+
+[Install]
+WantedBy=multi-user.target
+

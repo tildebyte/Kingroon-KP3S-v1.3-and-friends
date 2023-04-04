@@ -1,0 +1,21 @@
+#Systemd moonraker Service
+​
+[Unit]
+Description=API Server for Klipper SV1
+Requires=network-online.target
+After=network-online.target
+​
+[Install]
+WantedBy=multi-user.target
+​
+[Service]
+Type=simple
+User=quaestor
+SupplementaryGroups=moonraker-admin
+RemainAfterExit=yes
+WorkingDirectory=/home/quaestor/Source/moonraker
+EnvironmentFile=/home/quaestor/printer_data/systemd/moonraker.env
+ExecStart=/home/quaestor/moonraker-venv/bin/python3 /home/quaestor/Source/moonraker/moonraker/moonraker.py $MOONRAKER_ARGS
+Restart=always
+RestartSec=10
+

@@ -1,0 +1,439 @@
+api:
+  key: 6C1C2BBE222E4ACE8DF10B0D383E5EF0
+appearance:
+  closeModalsWithClick: false
+  components:
+    order:
+      tab:
+      - plugin_dashboard
+      - terminal
+      - plugin_klipper_main
+      - control
+      - temperature
+      - plugin_bedlevelvisualizer
+      - plugin_PrintJobHistory
+      - plugin_gcodeviewer
+      - plugin_prettygcode
+      - timelapse
+      - plugin_tasmota
+  fuzzyTimes: false
+  name: Klipementary
+gcodeAnalysis:
+  runAt: always
+plugins:
+  BLTouch:
+    cmdProbeDown: BLTOUCH_DEBUG COMMAND=pin_down
+    cmdProbeUp: BLTOUCH_DEBUG COMMAND=pin_up
+    cmdReleaseAlarm: BLTOUCH_DEBUG COMMAND=reset
+    cmdRepeatability: PROBE_ACCURACY
+    cmdSaveSettings: ''
+    cmdSelfTest: BLTOUCH_DEBUG COMMAND=self_test
+  DisplayLayerProgress:
+    printerDisplayScreenLocation: '"dir1": "up", "dir2": "left", "firstpos1": 25,
+      "firstpos2": 25'
+    printerDisplayScreenLocationClass: stack-bottomright
+    showOnNavBar: false
+    updatePrinterDisplayWhilePrinting: true
+  PrintJobHistory:
+    capturePrintJobHistoryMode: always
+    currencySymbol: $
+    lastPluginDependencyCheck: 1.17.0
+    pluginCheckActivated: false
+    preferedImageSource: camera
+    selectedFilamentTrackerPlugin: FilamentManager Plugin
+    takePluginThumbnailAfterPrint: false
+    takeTemperatureFromPreHeatPlugin: false
+  PrintTimeGenius:
+    analyzers:
+    - command: '"/home/quaestor/klippy-venv/bin/python3.9" "/home/quaestor/klippy-venv/lib/python3.9/site-packages/octoprint_PrintTimeGenius/analyzers/analyze_gcode_comments.py"
+        "{gcode}"'
+      description: All gcode analyzers (usually not as good as marlin-calc)
+      enabled: false
+    - command: '"/home/quaestor/klippy-venv/bin/python3.9" "/home/quaestor/klippy-venv/lib/python3.9/site-packages/octoprint_PrintTimeGenius/analyzers/analyze_progress.py"
+        marlin-calc "{gcode}" "{mcodes}"'
+      description: Marlin firmware simulation (replaces Octoprint built-in, faster
+        and more accurate)
+      enabled: true
+    - command: '"/home/quaestor/klippy-venv/bin/python3.9" "/home/quaestor/klippy-venv/lib/python3.9/site-packages/octoprint_PrintTimeGenius/analyzers/analyze_gcode_comments.py"
+        "{gcode}" --parsers slic3r_pe_print_time slic3r_pe_print_time_remaining'
+      description: Use Slic3r PE M73 time remaining
+      enabled: true
+  _disabled:
+  - tracking
+  - virtual_printer
+  action_command_notification:
+    enable_popups: true
+  active_filters_extended:
+    activeFilters:
+    - '(Send: (N\d+\s+)?M105)|(Recv:\s+(ok\s+([PBN]\d+\s+)*)?([BCLPR]|T\d*):-?\d+)'
+    - 'Recv: wait'
+    - 'Recv: (echo:\s*)?busy:\s*processing'
+  announcements:
+    _config_version: 1
+    channels:
+      _blog:
+        read_until: 1670938200
+      _important:
+        read_until: 1521111600
+      _octopi:
+        read_until: 1670518800
+      _plugins:
+        read_until: 1679720400
+      _releases:
+        read_until: 1679490000
+    enabled_channels:
+    - _releases
+    - _plugins
+  bedlevelvisualizer:
+    _config_version: 1
+    camera_position: 0,-1.8,0.25
+    command: "@BEDLEVELVISUALIZER\t; instruct plugin to start recording responses
+      from printer.\nBED_MESH_OUTPUT\t\t; report the bed leveling mesh points."
+    descending_y: true
+    mesh_timestamp: 3/28/2023, 1:34:34 PM
+    stored_mesh:
+    - - '0.053750'
+      - '0.040208'
+      - '0.030208'
+      - '0.023750'
+      - '0.020833'
+      - '0.021458'
+      - '0.025625'
+    - - '0.046597'
+      - '0.034522'
+      - '0.025170'
+      - '0.018542'
+      - '0.014637'
+      - '0.013457'
+      - '0.015000'
+    - - '0.040347'
+      - '0.028873'
+      - '0.019730'
+      - '0.012917'
+      - '0.008434'
+      - '0.006281'
+      - '0.006458'
+    - - '0.035000'
+      - '0.023264'
+      - '0.013889'
+      - '0.006875'
+      - '0.002222'
+      - '-0.000069'
+      - '-0.000000'
+    - - '0.030556'
+      - '0.017693'
+      - '0.007647'
+      - '0.000417'
+      - '-0.003997'
+      - '-0.005594'
+      - '-0.004375'
+    - - '0.027014'
+      - '0.012160'
+      - '0.001003'
+      - '-0.006458'
+      - '-0.010224'
+      - '-0.010293'
+      - '-0.006667'
+    - - '0.024375'
+      - '0.006667'
+      - '-0.006042'
+      - '-0.013750'
+      - '-0.016458'
+      - '-0.014167'
+      - '-0.006875'
+    stored_mesh_x:
+    - 0
+    - 29
+    - 58
+    - 88
+    - 117
+    - 146
+    - 175
+    stored_mesh_y:
+    - 0
+    - 29
+    - 58
+    - 88
+    - 117
+    - 146
+    - 175
+    stored_mesh_z_height: 180
+  costestimation:
+    _config_version: 3
+    currency: $
+  dashboard:
+    ETAShowDate: false
+    _config_version: 2
+    clearOn_Feedrate: '2'
+    clearOn_Filament: '2'
+    clearOn_LayerGraph: '1'
+    clearOn_PrintThumbnail: '2'
+    clearOn_PrinterMessage: '2'
+    commandWidgetArray:
+    - command: echo "47.6" | bc
+      enabled: false
+      icon: command-icon.png
+      interval: '60'
+      name: Simulated Chamber
+      type: 3/4
+    layerGraphType: scrolling
+    showHeightProgress: true
+    showJobControlButtons: true
+    showLayerGraph: true
+    showLayerProgress: true
+    showPrinterMessage: true
+    showSystemInfo: true
+    showTempGaugeColors: true
+    showWebCam: true
+    targetTempDeviation: '5'
+    temperatureTicks: '10'
+  discovery:
+    upnpUuid: 68c16934-33f5-42e4-8a63-2ca03a8ae3d6
+  errortracking:
+    unique_id: 5c17ebdc-0a92-4284-8d74-e5e082a43b1c
+  excluderegion:
+    _config_version: 1
+  filamentmanager:
+    _config_version: 1
+    autoPause: true
+    currencySymbol: $
+    database:
+      clientID: e4a688de-9f4c-11ed-9e55-9f3b61fe5ac0
+  firmware_check:
+    ignore_infos: true
+  gcodeviewer:
+    _config_version: 1
+  klipper:
+    _config_version: 4
+    configuration:
+      config_path: ~/printer_data/config
+      confirm_reload: false
+      logpath: ~/printer_data/logs/klippy.log
+      parse_check: true
+      reload_command: FIRMWARE_RESTART
+      restart_onsave: false
+      shortStatus_navbar: false
+    connection:
+      hide_editor_button: true
+      port: /home/quaestor/printer_data/comms/klippy.serial
+  marlingcodedocumentation:
+    include_source_reprap: false
+    show_help: false
+    update_documentation_last_status: Success
+    update_documentation_last_update: 2023-02-03 14:26:44.204890
+  navbarclock:
+    format24h: true
+    popover: true
+  navbartemp:
+    makeMoreRoom: true
+    useShortNames: true
+  octoapp:
+    encryptionKey: f714e256-526d-4b3e-8d4f-a3ddce28539d
+  octopod:
+    _config_version: 13
+    print_complete_delay_seconds: '5'
+    sound_notification: soft-bells-495.m4r
+    tokens:
+    - apnsToken: 9799E883BE6EDD46B90B6CC8F80DD47658B41F9E06B397352BAB24A30D7CA2FD
+      date: 02/21/23 19:34:05
+      deviceName: iPhone
+      languageCode: en
+      printerID: x-coredata://2AD44B83-A9D1-4EB7-B1CB-39A7F9AC185A/Printer/p4
+      printerName: OctoPrint instance on klipementary
+  prusaslicerthumbnails:
+    inline_thumbnail: true
+  softwareupdate:
+    _config_version: 9
+  tasmota:
+    _config_version: 12
+    arrSmartplugs:
+    - autoConnect: true
+      autoConnectDelay: 10
+      autoDisconnect: true
+      autoDisconnectDelay: '10'
+      automaticShutdownEnabled: true
+      backlog_off_delay: '10'
+      backlog_on_delay: '10'
+      brightness: 50
+      currentState: unknown
+      displayWarning: true
+      event_on_connecting: true
+      event_on_disconnect: true
+      event_on_error: false
+      event_on_upload: true
+      gcodeEnabled: false
+      gcodeOffDelay: 0
+      gcodeOnDelay: 0
+      icon: icon-bolt
+      idx: '1'
+      ip: 192.168.1.101
+      is_led: true
+      is_sensor_only: false
+      label: Printer power
+      label_extended: ''
+      off_color: '#FF0000'
+      on_color: '#00FF00'
+      password: ''
+      sensor_identifier: ''
+      sysCmdOff: false
+      sysCmdOffDelay: 0
+      sysCmdOn: false
+      sysCmdOnDelay: '5'
+      sysRunCmdOff: ''
+      sysRunCmdOn: FIRMWARE_RESTART
+      thermal_runaway: true
+      unknown_color: '#808080'
+      use_backlog: true
+      username: admin
+      warnPrinting: true
+    event_on_connecting_monitoring: true
+    event_on_disconnect_monitoring: true
+    event_on_upload_monitoring: true
+    event_on_upload_monitoring_always: true
+    polling_enabled: true
+    powerOffWhenIdle: true
+    thermal_runaway_max_bed: '80'
+    thermal_runaway_max_extruder: '250'
+    thermal_runaway_monitoring: true
+  tracking:
+    enabled: false
+    unique_id: 5ec91c4e-6dcb-4f2e-95af-0dd19c83d08d
+  uicustomizer:
+    addWebCamZoom: false
+    centerTopIcons: false
+    mainTabs:
+    - - tab_plugin_dashboard_link
+      - true
+      - false
+      - fas fa-tachometer-alt
+      - iconOnly
+      - false
+    - - control_link
+      - true
+      - false
+      - fas fa-expand-arrows-alt
+      - iconOnly
+      - false
+    - - temp_link
+      - true
+      - false
+      - fas fa-thermometer-half
+      - iconOnly
+      - false
+    - - term_link
+      - true
+      - false
+      - fas fa-terminal
+      - iconOnly
+      - false
+    - - tab_plugin_klipper_main_link
+      - true
+      - false
+      - fas fa-cut
+      - iconOnly
+      - false
+    - - tab_plugin_tasmota_link
+      - true
+      - false
+      - fas fa-plug
+      - iconOnly
+      - false
+    - - tab_plugin_PrintJobHistory_link
+      - true
+      - false
+      - fas fa-history
+      - iconOnly
+      - false
+    - - timelapse_link
+      - true
+      - false
+      - fas fa-film
+      - iconOnly
+      - false
+    - - gcode_link
+      - true
+      - false
+      - fab fa-codepen
+      - iconOnly
+      - false
+    - - tab_plugin_bedlevelvisualizer_link
+      - true
+      - false
+      - fas fa-chart-area
+      - iconOnly
+      - false
+    mainTabsIconSize: fa-2x
+    rows:
+    - _00#sidebar_plugin_firmware_check_warning_wrapper: false
+      _01#sidebar_plugin_firmware_check_info_wrapper: false
+      _02#sidebar_plugin_klipper_wrapper: true
+      _03#sidebar_plugin_action_command_notification_wrapper: true
+      _04#state_wrapper: true
+      _05#UICWebCamWidget: false
+      _06#UICGcodeVWidget: false
+      _07#UICTempWidget: false
+    - _00div.UICmainTabs: true
+    - _00#sidebar_plugin_tasmota_wrapper: true
+      _01#sidebar_plugin_filamentmanager_wrapper: true
+      _02#files_wrapper: true
+    saveAccordions: true
+    theme: red-night
+    themeLocal: false
+    themeVersion: 0.2.9.8
+    topIconSort:
+    - navbar_plugin_navbarclock
+    - navbar_plugin_navbartemp
+    - navbar_plugin_PrintJobHistory
+    - navbar_plugin_klipper
+    - navbar_plugin_tasmota
+    - navbar_plugin_logging_seriallog
+    - navbar_plugin_logging_plugintimingslog
+    - navbar_plugin_action_command_prompt
+    - navbar_plugin_DisplayLayerProgress
+    widths:
+    - '3'
+    - '6'
+    - '3'
+  virtual_printer:
+    _config_version: 1
+printerProfiles:
+  default: kp3s
+serial:
+  abortHeatupOnCancel: false
+  additionalPorts:
+  - /home/quaestor/printer_data/comms/klippy.serial
+  baudrate: 250000
+  disconnectOnErrors: false
+  ignoreEmptyPorts: true
+  logPositionOnCancel: true
+  lowLatency: true
+  timeout:
+    sdStatusAutoreport: 2.0
+server:
+  commands:
+    serverRestartCommand: sudo systemctl restart octoprint
+  firstRun: false
+  onlineCheck:
+    enabled: true
+    host: 192.168.1.1
+  pluginBlacklist:
+    enabled: true
+  secretKey: MNBYdIdrNmzgWb1kYOaMCiW09MYkIHit
+  seenWizards:
+    backup: null
+    corewizard: 4
+temperature:
+  profiles:
+  - bed: 60
+    chamber: null
+    extruder: 205
+    name: Eryone Matte PLA
+  - bed: 65
+    chamber: 0
+    extruder: 210
+    name: eSUN Matte PLA
+webcam:
+  ffmpeg: /usr/bin/ffmpeg
+  snapshot: http://192.168.1.105:8080/snapshot
+  stream: http://192.168.1.105:8080/stream
+  watermark: false

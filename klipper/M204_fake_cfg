@@ -1,0 +1,4 @@
+[gcode_macro M204]
+description: Fake 204 to drop error from Prusa Slicer
+rename_existing: M204.1
+gcode:

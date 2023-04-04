@@ -1,0 +1,10 @@
+[gcode_macro M300]
+gcode:
+    # Usage:
+    # M300 [P<ms>]
+    # P is the tone duration
+    # Use a 10ms duration is P is omitted.
+    {% set P = params.P|default(100)|int %}
+    SET_PIN PIN=BEEPER_pin VALUE=1.0
+    G4 P{P}
+    SET_PIN PIN=BEEPER_pin VALUE=0

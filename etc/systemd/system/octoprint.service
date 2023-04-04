@@ -1,0 +1,15 @@
+[Unit]
+Description=The snappy web interface for your 3D printer
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Environment="LC_ALL=C.UTF-8"
+Environment="LANG=C.UTF-8"
+Type=exec
+User=quaestor
+ExecStart=/home/quaestor/klippy-venv/bin/octoprint serve -4
+
+[Install]
+WantedBy=multi-user.target
+

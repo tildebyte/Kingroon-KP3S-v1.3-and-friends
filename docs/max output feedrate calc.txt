@@ -1,0 +1,54 @@
+you can calculate your max speed/feedrate for your particular setup with your
+max flowrate (v6s top out at a max flowrate of about 8-10 mm3 /s, and volcanos
+top out somewhere between 20 and 30 mm3 /s, depending on the nozzle.), the layer
+height, extrusion width, the filament diameter, and the temperature.
+
+as an example: let's say you're extruding 1.75mm filament at 0.2 mm layers at
+210c, with a typical extrusion width of 0.48mm for a 0.4mm nozzle.
+
+first, heat up your hot end, raise it a decent bit above the bed, then use your
+host software to repeatedly extrude 50+mm, slightly increasing the speed each
+time. repeat until the extruder motor starts skipping steps, or the filament
+starts grinding. reduce the speed and then increase it slower than before, until
+you've dialed in the speed where it skips. it's important to use extrude long
+(50-100+mm) amounts of filament at a time, since a hot end can briefly go above
+its max flowrate before pressure has built up in the chamber. increasing the
+temperature can also up your max flowrate somewhat, but this also increases ooze
+and stringing when printing.
+
+let's say our max speed before the extruder started skipping was 3mm/s (note:
+this is in terms of mm of filament going in to the extruder, not out). to
+calculate the flowrate, just multiply your max speed by the area of your
+filament.
+
+max input feedrate * pi * (filament diameter/2)2 = max flowrate
+
+in our case, it would be: 3 * 3.14 * 0.8752 = 7.21 mm/s3
+
+now we've calculated the maximum cubic volume of plastic per second we can put
+through the extruder. since the plastic we're extruding also a cross section
+with a fixed area (i.e. layer height x extrusion width), we can use that to
+derive the max speed at which we can move the hotend. just divide your max
+flowrate by your layer height and extrusion width.
+
+max flowrate / ( layer height * extrusion width) = max output feedrate
+
+in our case, it would be: 7.21/(0.2*0.48) = 75.1 mm/s
+
+so the fastest speed you should put into your slicer is 75.1 mm/s. I always like
+to reduce it by 5mm/s or so, just to make sure I don't occasionally skip steps,
+so I would use 70mm/s.
+
+the second formula is awesome to use because you can always be sure your speeds
+for your settings won't overload your hotend, and your max flowrate generally
+stays pretty constant so it's very quick to use. I only recalculate my max
+flowrate whenever I change nozzles, filaments, or raise/lower the temperature
+significantly.
+
+hope this  helps! I used to get confused all the time by the difference between
+filament and extrusion feedrates, and how your flowrate relates to them. but
+once I finally sat down and worked out the math, it made waaaay more sense and I
+have a much better grasp of what speeds I should use now. there are other speed
+limits for printers, like motor torque and your firmware's max steprate (10khz
+for marlin), but I usually hit max flowrate long before those start affecting
+anything.

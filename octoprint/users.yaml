@@ -1,0 +1,15 @@
+_version: 2
+octoprint:
+  active: true
+  apikey: null
+  groups:
+  - admins
+  - users
+  password: $argon2id$v=19$m=65536,t=3,p=4$XYvxXuvd+1+rFaL0Xqv13g$ysvISfdBUyZqKcxVWXqcWsHs3tL6D7ARWCEE61kAn8A
+  permissions: []
+  roles:
+  - user
+  - admin
+  settings:
+    interface:
+      language: _default
