@@ -1,6 +1,9 @@
 # Personal repo for Kingroon KP3S, Klipper, OctoPrint, PrusaSlicer & friends
 
-This repo contains configs for the following.
+
+This repo contains configs for using the
+[Kingroon KP3S v1.3](https://kingroon.com/products/official-kingroon-kp3s-3d-printer)
+(latest model as of 2022; the one with the Titan extruder) with the following
 
 ## WARNING
 
