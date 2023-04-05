@@ -11,6 +11,8 @@ somewhere and have it "just work". For one thing, the klipper config is *highly*
 customized to my physical printer (which is likely *physically* different from
 even another "identical" KP3S v1.3 due to manufacturing tolerances, etc.)
 
+![OctoPrint UI showing off UI Customization plugin as well as klipper plugin](./docs/images/octoprint_klipper_ui-customizer.png)
+
 This is primarily a backup for me, *but it could certainly be useful as a reference
 for someone looking for up-to-date configs for the components I use*, to wit:
 
