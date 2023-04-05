@@ -1,3 +1,8 @@
+# Klipper Advanced Tuning
+
+> tildebyte note: Taken (nearly) verbatim from
+[an unused commit in the main Klipper repo](https://github.com/Klipper3d/klipper/commit/c577d3f7664010678c36185934773a9b11887aa8)
+
 This document provides some hints and tips on tuning some popular
 configuration settings. The goal is to provide a high-level overview
 of these parameters and to provide some intuition for tuning. This
@@ -7,23 +12,21 @@ See the
 [example.cfg](https://github.com/KevinOConnor/klipper/tree/master/config/example.cfg)
 file for the full documentation of the settings discussed here.
 
-Tuning for faster prints
-========================
+## Tuning for faster prints
 
 XXX - move simulation section to new test tools section
 
 XXX - add description of TUNING_TOWER command to tools section
 
-
 A common goal is to tune for higher print speeds while still
 maintaining reasonable print quality. A useful tool is Klipper's
-["batch processing mode"](Debugging.md#translating-gcode-files-to-micro-controller-commands). It
-allows one to determine the print time of a gcode file without having
+["batch processing mode"](Debugging.md#translating-gcode-files-to-micro-controller-commands).
+It allows one to determine the print time of a gcode file without having
 to actually print it. Follow the steps in the link above to setup
 Klipper in this mode, then ssh into the host machine, and run a
 command like the following:
 
-```
+```sh
 ~/klippy-env/bin/python ./klippy/klippy.py ~/printer.cfg -d out/klipper.dict -o /dev/null -i ~/.octoprint/uploads/my_print.gcode
 ```
 
@@ -84,8 +87,7 @@ times (greatest impact first):
   for info on testing acceleration, tuning input_shaper, and selecting
   a maximum acceleration with it.
 
-Tuning for extrusion quality
-============================
+## Tuning for extrusion quality
 
 A common goal is to tune the printer for improved print extrusion
 quality. The primary method of improving quality is to "go slower"
@@ -134,8 +136,7 @@ may improve quality without increasing print time.
   `TUNING_TOWER COMMAND=SET_VELOCITY_LIMIT
   PARAMETER=SQUARE_CORNER_VELOCITY START=0 FACTOR=.5`
 
-Other Parameters
-================
+## Other Parameters
 
 - `max_accel_to_decel`: This setting is intended to reduce printer
   vibrations caused by small zigzag moves. Some slicers will emit
