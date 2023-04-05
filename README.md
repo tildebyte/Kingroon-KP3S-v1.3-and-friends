@@ -1,6 +1,5 @@
 # Personal repo for Kingroon KP3S, Klipper, OctoPrint, PrusaSlicer & friends
 
-
 This repo contains configs for using the
 [Kingroon KP3S v1.3](https://kingroon.com/products/official-kingroon-kp3s-3d-printer)
 (latest model as of 2022; the one with the Titan extruder) with the following
@@ -22,6 +21,8 @@ for someone looking for up-to-date configs for the components I use*, to wit:
 - [PrusaSlicer](https://github.com/prusa3d/PrusaSlicer)
 - [ustreamer](https://github.com/pikvm/ustreamer)
 - [moonraker](https://github.com/Arksine/moonraker) (used only for KAMP)
+- [elementary OS](https://elementary.io) (perfect for a 2015 MacBook Air with a badly damaged screen - headless FTW!)
+- [XanMod Kernel](https://xanmod.org) (high-performance Linux kernel - optionally realtime)
 
 ## Notable addons
 
